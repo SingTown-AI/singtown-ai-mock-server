@@ -48,5 +48,32 @@ for i in range(400):
         }
     )
 
+for i in range(400):
+    project["val"].append(
+        {
+            "name": f"dog.{i}.jpg",
+            "bboxes": get_bboxes(f"labels/dog.{i}.txt"),
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
+        }
+    )
+
+for i in range(400, 1000):
+    project["train"].append(
+        {
+            "name": f"cat.{i}.jpg",
+            "bboxes": get_bboxes(f"labels/cat.{i}.txt"),
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
+        }
+    )
+
+for i in range(400, 1000):
+    project["train"].append(
+        {
+            "name": f"dog.{i}.jpg",
+            "bboxes": get_bboxes(f"labels/dog.{i}.txt"),
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
+        }
+    )
+
 with open(f"d94f5e8c-7b3a-4e8f-9a2c-1b3d5f7a9c4e.json", "w") as f:
     json.dump(project, f)

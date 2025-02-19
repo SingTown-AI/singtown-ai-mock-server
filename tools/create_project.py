@@ -39,7 +39,7 @@ for i in range(400):
         }
     )
 
-for i in range(400, 2000):
+for i in range(400, 1000):
     project["train"].append(
         {
             "name": f"cat.{i}.jpg",
@@ -48,7 +48,7 @@ for i in range(400, 2000):
         }
     )
    
-for i in range(400, 2000):
+for i in range(400, 1000):
     project["train"].append(
         {
             "name": f"dog.{i}.jpg",
@@ -57,5 +57,5 @@ for i in range(400, 2000):
         }
     )
 
-with open(f"project.json", "w") as f:
+with open(f"f47ac10b-58cc-4372-a567-0e02b2c3d479.json", "w") as f:
     json.dump(project, f)
