@@ -44,7 +44,7 @@ for i in range(400):
         {
             "name": f"cat.{i}.jpg",
             "bboxes": get_bboxes(f"labels/cat.{i}.txt"),
-            "url": f"http://127.0.0.1:8000/media/dataset/cat.{i}.jpg"
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
         }
     )
 

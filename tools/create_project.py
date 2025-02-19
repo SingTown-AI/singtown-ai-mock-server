@@ -26,7 +26,7 @@ for i in range(400):
         {
             "name": f"cat.{i}.jpg",
             "label": "cat",
-            "url": f"http://127.0.0.1:8000/media/dataset/cat.{i}.jpg"
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
         }
     )
     
@@ -35,7 +35,7 @@ for i in range(400):
         {
             "name": f"dog.{i}.jpg",
             "label": "dog",
-            "url": f"http://127.0.0.1:8000/media/dataset/dog.{i}.jpg"
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
         }
     )
 
@@ -44,7 +44,7 @@ for i in range(400, 2000):
         {
             "name": f"cat.{i}.jpg",
             "label": "cat",
-            "url": f"http://127.0.0.1:8000/media/dataset/cat.{i}.jpg"
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
         }
     )
    
@@ -53,7 +53,7 @@ for i in range(400, 2000):
         {
             "name": f"dog.{i}.jpg",
             "label": "dog",
-            "url": f"http://127.0.0.1:8000/media/dataset/dog.{i}.jpg"
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
         }
     )
 
