@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='singtown_ai_mock_server',
-    version='0.3.1',
+    name="singtown_ai_mock_server",
+    version="0.4.0",
     packages=find_packages(),
     install_requires=[
-        'Flask',
+        "Flask",
     ],
     package_data={
-        'singtown_ai_mock_server': ['media/**/*', 'projects/*.json'],
+        "singtown_ai_mock_server": ["media/**/*", "projects/*.json"],
     },
 )

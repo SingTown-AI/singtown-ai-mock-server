@@ -9,53 +9,56 @@ project = {
         {
             "name": "cat",
             "color": "#FF0000",
-            "description": "cat animal"
+            "description": "cat animal",
         },
         {
             "name": "dog",
             "color": "#00FF00",
-            "description": "dog animal"
-        }
+            "description": "dog animal",
+        },
     ],
-    "train": [],
-    "val": [],
+    "annotations": [],
 }
- 
+
 for i in range(400):
-    project["val"].append(
+    project["annotations"].append(
         {
             "name": f"cat.{i}.jpg",
             "label": "cat",
-            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
+            "test": True,
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg",
         }
     )
-    
+
 for i in range(400):
-    project["val"].append(
+    project["annotations"].append(
         {
             "name": f"dog.{i}.jpg",
             "label": "dog",
-            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
+            "test": True,
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg",
         }
     )
 
 for i in range(400, 1000):
-    project["train"].append(
+    project["annotations"].append(
         {
             "name": f"cat.{i}.jpg",
             "label": "cat",
-            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg"
-        }
-    )
-   
-for i in range(400, 1000):
-    project["train"].append(
-        {
-            "name": f"dog.{i}.jpg",
-            "label": "dog",
-            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg"
+            "test": False,
+            "url": f"http://127.0.0.1:8000/media/images/cat.{i}.jpg",
         }
     )
 
-with open(f"f47ac10b-58cc-4372-a567-0e02b2c3d479.json", "w") as f:
+for i in range(400, 1000):
+    project["annotations"].append(
+        {
+            "name": f"dog.{i}.jpg",
+            "label": "dog",
+            "test": False,
+            "url": f"http://127.0.0.1:8000/media/images/dog.{i}.jpg",
+        }
+    )
+
+with open("f47ac10b-58cc-4372-a567-0e02b2c3d479.json", "w") as f:
     json.dump(project, f)
