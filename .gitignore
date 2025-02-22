@@ -5,3 +5,4 @@ __pycache__
 dist
 build
 *.egg-info
+singtown_ai_mock_server/media
