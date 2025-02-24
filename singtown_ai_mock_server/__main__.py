@@ -1,16 +1,18 @@
 from flask import Flask, abort, request, send_file
 import os
 import copy
+from typing import List
 from functools import wraps
+from singtown_ai import runner
 
 TOKEN = "1234567890"
 
-TASKS = [
-    {
+TASKS: List[runner.Task] = [
+    {  # for unittest
         "id": "b45f8ac0-a3a7-43ac-9d15-d2f4a505425c",
         "status": "pending",
         "crated_at": "2024-10-01T12:00:00Z",
-        "cwd": "./singtown_ai",
+        "cwd": "./",
         "dataset_path": "dataset",
         "metrics_path": "metrics.csv",
         "result_path": "result.zip",
@@ -20,14 +22,14 @@ TASKS = [
             "train.py",
         ],
     },
-    {
+    {  # for classify train
         "id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
         "status": "pending",
         "crated_at": "2023-10-01T12:00:00Z",
         "cwd": "./",
-        "dataset_path": "dataset",
         "metrics_path": "metrics.csv",
-        "result_path": "best.keras",
+        "resource_extract": "./dataset",
+        "output_file": "best.keras",
         "cmd": [
             "python",
             "-u",
@@ -39,9 +41,9 @@ TASKS = [
             "--alpha",
             "0.35",
             "--imgw",
-            "224",
+            "96",
             "--imgh",
-            "224",
+            "96",
             "--labels",
             "cat",
             "dog",
@@ -51,7 +53,27 @@ TASKS = [
             "0.001",
         ],
     },
-    {
+    {  # for deplay openmv
+        "id": "68c01fc6-589f-4f56-a923-580bdad7e02d",
+        "status": "pending",
+        "crated_at": "2023-10-01T12:00:00Z",
+        "cwd": "./",
+        "metrics_path": None,
+        "resource_extract": "./resource",
+        "output_file": "trained.tflite",
+        "cmd": [
+            "python",
+            "-u",
+            "export_tflite_micro.py",
+            "--model",
+            "resource/best.keras",
+            "--dataset",
+            "resource/dataset",
+            "--output",
+            "trained.tflite",
+        ],
+    },
+    {  # for yolo train
         "id": "321e8f2b-4c9d-4f5a-8b3e-2f7c8a1d6b4e",
         "status": "pending",
         "crated_at": "2023-10-01T12:00:00Z",
@@ -115,14 +137,12 @@ def upload_task_log(id: str):
     return "OK"
 
 
-@app.get("/tasks/<id>/dataset")
+@app.get("/tasks/<id>/resource")
 @require_auth
-def download_task_dataset(id: str):
+def download_task_resource(id: str):
     task = get_task_or_404(id)
-    dataset_path = os.path.join(
-        os.path.dirname(__file__), "datasets", f"{task['id']}.zip"
-    )
-    return send_file(dataset_path, as_attachment=True, download_name="dataset.zip")
+    file_path = os.path.join(os.path.dirname(__file__), "resource", f"{task['id']}.zip")
+    return send_file(file_path, as_attachment=True, download_name="resource.zip")
 
 
 if __name__ == "__main__":
